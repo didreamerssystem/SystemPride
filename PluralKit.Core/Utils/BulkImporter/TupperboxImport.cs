@@ -25,10 +25,10 @@ public partial class BulkImporter
                 $"{Emojis.Warn} The following potential issues were detected converting your Tupperbox input file:";
             if (hasGroup)
                 issueStr +=
-                    "\n- PluralKit does not support member groups. Members will be imported without groups.";
+                    "\n- SystemPride does not support member groups. Members will be imported without groups.";
             if (multipleTags)
                 issueStr +=
-                    "\n- PluralKit does not support per-member system tags. Since you had multiple members with distinct tags, those tags will be applied to the members' *display names*/nicknames instead.";
+                    "\n- SystemPride does not support per-member system tags. Since you had multiple members with distinct tags, those tags will be applied to the members' *display names*/nicknames instead.";
 
             await _confirmFunc(issueStr);
             _result.Success = true;

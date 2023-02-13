@@ -24,7 +24,7 @@ public static class AvatarUtils
             throw Errors.InvalidUrl;
 
         if (uri.Host.Contains("toyhou.se"))
-            throw new PKError("Due to server issues, PluralKit is unable to read images hosted on toyhou.se.");
+            throw new PKError("Due to server issues, SystemPride is unable to read images hosted on toyhou.se.");
 
         url = TryRewriteCdnUrl(url);
 

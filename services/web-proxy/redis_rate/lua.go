@@ -2,7 +2,7 @@ package redis_rate
 
 import "github.com/go-redis/redis/v8"
 
-// pluralkit changes:
+// SystemPride changes:
 // fly's hosted redis doesn't support replicate commands
 // we can remove it since it's a single host
 

@@ -84,7 +84,7 @@ public class ProxyService
 
         // this is hopefully temporary, so not putting it into a separate method
         if (message.Content != null && message.Content.Length > 2000)
-            throw new PKError("PluralKit cannot proxy messages over 2000 characters in length.");
+            throw new PKError("SystemPride cannot proxy messages over 2000 characters in length.");
 
         // Permission check after proxy match so we don't get spammed when not actually proxying
         if (!CheckBotPermissionsOrError(botPermissions, rootChannel.Id))
@@ -122,7 +122,7 @@ public class ProxyService
 
         // Make sure this message does not start a forum thread
         if (msg.Id == msg.ChannelId)
-            throw new ProxyChecksFailedException("This message is the initial message in a forum post, which PluralKit is unable to proxy correctly.");
+            throw new ProxyChecksFailedException("This message is the initial message in a forum post, which SystemPride is unable to proxy correctly.");
 
         // Make sure proxying is enabled here
         if (ctx.InBlacklist)
@@ -132,7 +132,7 @@ public class ProxyService
         // Make sure the system has proxying enabled in the server
         if (!ctx.ProxyEnabled)
             throw new ProxyChecksFailedException(
-                "Your system has proxying disabled in this server. Type `pk;proxy on` to enable it.");
+                "Your system has proxying disabled in this server. Type `sp;proxy on` to enable it.");
 
         // Make sure we have either an attachment or message content
         var isMessageBlank = msg.Content == null || msg.Content.Trim().Length == 0;
@@ -140,10 +140,10 @@ public class ProxyService
             throw new ProxyChecksFailedException("Message cannot be blank.");
 
         if (msg.Activity != null)
-            throw new ProxyChecksFailedException("Message contains an invite to an activity, which cannot be re-sent by PluralKit.");
+            throw new ProxyChecksFailedException("Message contains an invite to an activity, which cannot be re-sent by SystemPride.");
 
         if (msg.StickerItems != null) // && msg.StickerItems.Any(s => s.Type == Sticker.StickerType.GUILD && s.GuildId != msg.GuildId))
-            throw new ProxyChecksFailedException("Message contains stickers, which cannot be re-sent by PluralKit.");
+            throw new ProxyChecksFailedException("Message contains stickers, which cannot be re-sent by SystemPride.");
 
         // All good!
         return true;
@@ -282,7 +282,7 @@ public class ProxyService
     {
         // XXX: This is a naïve implementation of detecting reply embeds: looking for the same Unicode
         // characters as used in the reply embed generation, since we don't _really_ have a good way
-        // to detect whether an embed is a PluralKit reply embed right now, whether a message is in
+        // to detect whether an embed is a SystemPride reply embed right now, whether a message is in
         // reply to another message isn't currently stored anywhere in the database.
         //
         // unicodes: [three-per-em space] [left arrow emoji] [force emoji presentation]
@@ -509,11 +509,11 @@ public class ProxyService
             return false;
 
         if (!permissions.HasFlag(PermissionSet.ManageWebhooks))
-            throw new PKError("PluralKit does not have the *Manage Webhooks* permission in this channel, and thus cannot proxy messages."
+            throw new PKError("SystemPride does not have the *Manage Webhooks* permission in this channel, and thus cannot proxy messages."
                             + " Please contact a server administrator to remedy this.");
 
         if (!permissions.HasFlag(PermissionSet.ManageMessages))
-            throw new PKError("PluralKit does not have the *Manage Messages* permission in this channel, and thus cannot delete the original trigger message."
+            throw new PKError("SystemPride does not have the *Manage Messages* permission in this channel, and thus cannot delete the original trigger message."
                             + " Please contact a server administrator to remedy this.");
 
         return true;

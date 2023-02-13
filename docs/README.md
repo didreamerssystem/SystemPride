@@ -1,4 +1,4 @@
-# PluralKit docs
+# SystemPride docs
 The documentation is built using [Vuepress](https://vuepress.vuejs.org/). All website content is located in the `content/` subdirectory.
 
 Most site parameters, including the sidebar layout, are defined in `content/.vuepress/config.js`. Some additional CSS is defined in `content/.vuepress/styles`.

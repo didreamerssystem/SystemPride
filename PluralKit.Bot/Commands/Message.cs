@@ -124,7 +124,7 @@ public class ProxiedMessage
         else if (prepend) newContent = $"{newContent}{mutateSpace}{originalContent}";
 
         if (newContent.Length > 2000)
-            throw new PKError("PluralKit cannot proxy messages over 2000 characters in length.");
+            throw new PKError("SystemPride cannot proxy messages over 2000 characters in length.");
 
         try
         {
@@ -158,7 +158,7 @@ public class ProxiedMessage
             await using var conn = await ctx.Database.Obtain();
             msg = await ctx.Repository.GetMessage(referencedMessage.Value);
             if (msg == null)
-                throw new PKError("This is not a message proxied by PluralKit.");
+                throw new PKError("This is not a message proxied by SystemPride.");
         }
 
         if (msg == null)

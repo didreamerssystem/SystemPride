@@ -1,9 +1,9 @@
 # Compatibility with other bots
 Many servers use *logger bots* for keeping track of edited and deleted messages, nickname changes, and other server events.
-Because PluralKit deletes messages as part of proxying, this can often clutter up these logs. 
+Because SystemPride deletes messages as part of proxying, this can often clutter up these logs. 
 
-## Bots with PluralKit support
-Some moderation bots have offical PluralKit support, and properly handle excluding proxy deletes, as well as add PK-specific information to relevant log messages:
+## Bots with SystemPride support
+Some moderation bots have offical SystemPride support, and properly handle excluding proxy deletes, as well as add PK-specific information to relevant log messages:
 
 - [**Catalogger**](https://catalogger.starshines.xyz/docs)
 - [**Aero**](https://aero.bot/) 
@@ -12,10 +12,10 @@ Some moderation bots have offical PluralKit support, and properly handle excludi
 If your server uses an in-house bot for logging, you can use [the API](/api) to implement support yourself.
 
 ## Log cleanup
-Another solution is for PluralKit to automatically delete log messages from other bots when they get posted.
-PluralKit supports this through the **log cleanup** feature. To enable it, use the following command:
+Another solution is for SystemPride to automatically delete log messages from other bots when they get posted.
+SystemPride supports this through the **log cleanup** feature. To enable it, use the following command:
 
-    pk;logclean on
+    sp;logclean on
     
 This requires you to have the *Manage Server* permission on the server. 
 
@@ -38,7 +38,7 @@ At the moment, log cleanup works with the following bots:
 - [Vortex](https://github.com/jagrosh/Vortex/wiki) (fuzzy)
 
 ::: warning
-In most cases, PluralKit will match log messages by the ID of the deleted message itself. However, some bots (marked with *(fuzzy)* above) don't include this in their logs. In this case, PluralKit will attempt to match based on other parameters, but there may be false positives. 
+In most cases, SystemPride will match log messages by the ID of the deleted message itself. However, some bots (marked with *(fuzzy)* above) don't include this in their logs. In this case, SystemPride will attempt to match based on other parameters, but there may be false positives. 
 
 **For best results, use a bot marked *(precise)* in the above list.**
 :::
@@ -46,6 +46,6 @@ In most cases, PluralKit will match log messages by the ID of the deleted messag
 If you want support for another logging bot, [let me know on the support server](https://discord.gg/PczBt78).
 
 ## Chat filter bots
-If PluralKit detects that a proxy trigger message has already been deleted when it attempts to delete it itself, it'll also delete the trigger message.  This ensures compatibility in *most* cases with moderation bots that filter messages (eg. swear words, links, invites, etc). The bot will delete the original trigger message, and then PluralKit will clean up the proxied message as well.
+If SystemPride detects that a proxy trigger message has already been deleted when it attempts to delete it itself, it'll also delete the trigger message.  This ensures compatibility in *most* cases with moderation bots that filter messages (eg. swear words, links, invites, etc). The bot will delete the original trigger message, and then SystemPride will clean up the proxied message as well.
 
 Due to the timing aspect, this may not work 100% of the time, especially if there's server lag involved, but it's hopefully good enough.

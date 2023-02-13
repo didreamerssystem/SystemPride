@@ -86,7 +86,7 @@ public partial class CommandTree
     public static Command TokenRefresh = new Command("token refresh", "token refresh", "Resets your system's API token");
     public static Command Import = new Command("import", "import [fileurl]", "Imports system information from a data file");
     public static Command Export = new Command("export", "export", "Exports system information to a data file");
-    public static Command Help = new Command("help", "help", "Shows help information about PluralKit");
+    public static Command Help = new Command("help", "help", "Shows help information about SystemPride");
     public static Command Explain = new Command("explain", "explain", "Explains the basics of systems and proxying");
     public static Command Message = new Command("message", "message <id|link> [delete|author]", "Looks up a proxied message");
     public static Command MessageEdit = new Command("edit", "edit [link] <text>", "Edit a previously proxied message");
@@ -101,7 +101,7 @@ public partial class CommandTree
     public static Command BlacklistShow = new Command("blacklist show", "blacklist show", "Displays the current proxy blacklist");
     public static Command BlacklistAdd = new Command("blacklist add", "blacklist add all|<channel> [channel 2] [channel 3...]", "Adds certain channels to the proxy blacklist");
     public static Command BlacklistRemove = new Command("blacklist remove", "blacklist remove all|<channel> [channel 2] [channel 3...]", "Removes certain channels from the proxy blacklist");
-    public static Command Invite = new Command("invite", "invite", "Gets a link to invite PluralKit to other servers");
+    public static Command Invite = new Command("invite", "invite", "Gets a link to invite SystemPride to other servers");
     public static Command PermCheck = new Command("permcheck", "permcheck <guild>", "Checks whether a server's permission setup is correct");
     public static Command Admin = new Command("admin", "admin", "Super secret admin commands (sshhhh)");
 

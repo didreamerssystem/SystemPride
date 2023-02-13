@@ -5,7 +5,7 @@ permalink: /api/dispatch
 
 # Dispatch Webhooks
 
-Dispatch webhooks are a way to get notified when you update your system information on PluralKit. It can be used for integrations where you want to perform some action when you run a bot command on Discord, but also don't want to (or can't) set up a Discord bot to listen to messages.
+Dispatch webhooks are a way to get notified when you update your system information on SystemPride. It can be used for integrations where you want to perform some action when you run a bot command on Discord, but also don't want to (or can't) set up a Discord bot to listen to messages.
 
 You will need a publicly-accessible webserver that can receive and process JSON-formatted POST requests.
 
@@ -15,11 +15,11 @@ You will need a publicly-accessible webserver that can receive and process JSON-
 On the internet, security is important! Don't skip this section.
 :::
 
-To get dispatch events from PluralKit, you must set up a *public* HTTP endpoint. As such, anyone who knows the URL to the endpoint - **not only PluralKit** - can send POST requests and "pretend" to be PluralKit.
+To get dispatch events from SystemPride, you must set up a *public* HTTP endpoint. As such, anyone who knows the URL to the endpoint - **not only SystemPride** - can send POST requests and "pretend" to be SystemPride.
 
-For this reason, when you register a webhook URL, PluralKit generates a secret token, and then includes it with every event sent to you in the `signing_token` key. If you receive an event with an invalid `signing_token`, you **must** stop processing the request and **respond with a 401 status code**.
+For this reason, when you register a webhook URL, SystemPride generates a secret token, and then includes it with every event sent to you in the `signing_token` key. If you receive an event with an invalid `signing_token`, you **must** stop processing the request and **respond with a 401 status code**.
 
-PluralKit will send invalid requests to your endpoint, with `PING` event type, once in a while to confirm that you are correctly validating requests.
+SystemPride will send invalid requests to your endpoint, with `PING` event type, once in a while to confirm that you are correctly validating requests.
 
 ## Dispatch Event Model
 
@@ -35,7 +35,7 @@ PluralKit will send invalid requests to your endpoint, with `PING` event type, o
 
 |name|description|content of `data` object|notes|
 |---|---|---|---|
-|PING|PluralKit is checking if your webhook URL is working.|null|Reply with a 200 status code if the `signing_token` is correct, or a 401 status code if it is invalid.|
+|PING|SystemPride is checking if your webhook URL is working.|null|Reply with a 200 status code if the `signing_token` is correct, or a 401 status code if it is invalid.|
 |UPDATE_SYSTEM|your system was updated|[system object](/api/models#system-model) only containing modififed keys|
 |UPDATE_SETTINGS|your bot settings were updated|[system settings object](/api/models#system-settings-model) only containing modified keys|
 |CREATE_MEMBER|a new member was created|[member object](/api/models#member-model) only containing `name` key|new member ID can be found in the top-level `id` key`|
@@ -54,4 +54,4 @@ PluralKit will send invalid requests to your endpoint, with `PING` event type, o
 |UPDATE_SWITCH|a switch was updated|[switch object](/api/models#switch-model) with only modified keys|
 |DELETE_SWITCH|a switch was deleted|null|old switch ID can be found in top-level `id` key|
 |DELETE_ALL_SWITCHES|your system's switches were bulk deleted|null|
-|SUCCESSFUL_IMPORT|some information was successfully imported through the `pk;import` command to your system|null|
+|SUCCESSFUL_IMPORT|some information was successfully imported through the `sp;import` command to your system|null|

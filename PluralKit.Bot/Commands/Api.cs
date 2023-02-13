@@ -40,7 +40,7 @@ public class Api
                 new MessageRequest
                 {
                     Content = $"{Emojis.Warn} Please note that this grants access to modify (and delete!) all your system data, so keep it safe and secure."
-                            + $" If it leaks or you need a new one, you can invalidate this one with `pk;token refresh`.\n\nYour token is below:"
+                            + $" If it leaks or you need a new one, you can invalidate this one with `sp;token refresh`.\n\nYour token is below:"
                 });
             await ctx.Rest.CreateMessage(dm, new MessageRequest { Content = token });
 
@@ -122,7 +122,7 @@ public class Api
         if (!ctx.HasNext(false))
         {
             if (ctx.System.WebhookUrl == null)
-                await ctx.Reply("Your system does not have a webhook URL set. Set one with `pk;system webhook <url>`!");
+                await ctx.Reply("Your system does not have a webhook URL set. Set one with `sp;system webhook <url>`!");
             else
                 await ctx.Reply($"Your system's webhook URL is <{ctx.System.WebhookUrl}>.");
             return;
@@ -141,7 +141,7 @@ public class Api
             throw new PKError($"The URL {newUrl.AsCode()} is invalid or I cannot access it. Are you sure this is a valid, publicly accessible URL?");
 
         if (_webhookRegex.IsMatch(newUrl))
-            throw new PKError("PluralKit does not currently support setting a Discord webhook URL as your system's webhook URL.");
+            throw new PKError("SystemPride does not currently support setting a Discord webhook URL as your system's webhook URL.");
 
         try
         {
@@ -157,7 +157,7 @@ public class Api
         await ctx.Repository.UpdateSystem(ctx.System.Id, new SystemPatch { WebhookUrl = newUrl, WebhookToken = newToken });
 
         await ctx.Reply($"{Emojis.Success} Successfully the new webhook URL for your system."
-                        + $"\n\n{Emojis.Warn} The following token is used to authenticate requests from PluralKit to you."
+                        + $"\n\n{Emojis.Warn} The following token is used to authenticate requests from SystemPride to you."
                         + " If it leaks, you should clear and re-set the webhook URL to get a new token."
                         + "\ntodo: add link to docs or something"
         );

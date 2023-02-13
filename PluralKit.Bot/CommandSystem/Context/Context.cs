@@ -83,10 +83,10 @@ public class Context
 
         if (!botPerms.HasFlag(PermissionSet.SendMessages))
             // Will be "swallowed" during the error handler anyway, this message is never shown.
-            throw new PKError("PluralKit does not have permission to send messages in this channel.");
+            throw new PKError("SystemPride does not have permission to send messages in this channel.");
 
         if (embed != null && !botPerms.HasFlag(PermissionSet.EmbedLinks))
-            throw new PKError("PluralKit does not have permission to send embeds in this channel. Please ensure I have the **Embed Links** permission enabled.");
+            throw new PKError("SystemPride does not have permission to send embeds in this channel. Please ensure I have the **Embed Links** permission enabled.");
 
         var msg = await Rest.CreateMessage(Channel.Id, new MessageRequest
         {
@@ -112,7 +112,7 @@ public class Context
 
         if (deprecated && commandDef != null)
         {
-            await Reply($"{Emojis.Warn} This command has been removed. please use `pk;{commandDef.Key}` instead.");
+            await Reply($"{Emojis.Warn} This command has been removed. please use `sp;{commandDef.Key}` instead.");
             return;
         }
 
@@ -125,7 +125,7 @@ public class Context
         }
         catch (PKSyntaxError e)
         {
-            await Reply($"{Emojis.Error} {e.Message}\n**Command usage:**\n> pk;{commandDef?.Usage}");
+            await Reply($"{Emojis.Error} {e.Message}\n**Command usage:**\n> sp;{commandDef?.Usage}");
         }
         catch (PKError e)
         {

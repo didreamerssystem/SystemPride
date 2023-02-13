@@ -47,13 +47,13 @@ public class ServerConfig
         channel = await ctx.MatchChannel();
         if (channel == null || channel.GuildId != ctx.Guild.Id) throw Errors.ChannelNotFound(channelString);
         if (channel.Type != Channel.ChannelType.GuildText)
-            throw new PKError("PluralKit cannot log messages to this type of channel.");
+            throw new PKError("SystemPride cannot log messages to this type of channel.");
 
         var perms = await _cache.PermissionsIn(channel.Id);
         if (!perms.HasFlag(PermissionSet.SendMessages))
-            throw new PKError("PluralKit is missing **Send Messages** permissions in the new log channel.");
+            throw new PKError("SystemPride is missing **Send Messages** permissions in the new log channel.");
         if (!perms.HasFlag(PermissionSet.EmbedLinks))
-            throw new PKError("PluralKit is missing **Embed Links** permissions in the new log channel.");
+            throw new PKError("SystemPride is missing **Embed Links** permissions in the new log channel.");
 
         await ctx.Repository.UpdateGuild(ctx.Guild.Id, new GuildPatch { LogChannel = channel.Id });
         await ctx.Reply($"{Emojis.Success} Proxy logging channel set to <#{channel.Id}>.");
@@ -92,7 +92,7 @@ public class ServerConfig
         await ctx.Reply(
             $"{Emojis.Success} Message logging for the given channels {(enable ? "enabled" : "disabled")}." +
             (logChannel == null
-                ? $"\n{Emojis.Warn} Please note that no logging channel is set, so there is nowhere to log messages to. You can set a logging channel using `pk;log channel #your-log-channel`."
+                ? $"\n{Emojis.Warn} Please note that no logging channel is set, so there is nowhere to log messages to. You can set a logging channel using `sp;log channel #your-log-channel`."
                 : ""));
     }
 
@@ -254,10 +254,10 @@ public class ServerConfig
             var guildCfg = await ctx.Repository.GetGuild(ctx.Guild.Id);
             if (guildCfg.LogCleanupEnabled)
                 eb.Description(
-                    "Log cleanup is currently **on** for this server. To disable it, type `pk;logclean off`.");
+                    "Log cleanup is currently **on** for this server. To disable it, type `sp;logclean off`.");
             else
                 eb.Description(
-                    "Log cleanup is currently **off** for this server. To enable it, type `pk;logclean on`.");
+                    "Log cleanup is currently **off** for this server. To enable it, type `sp;logclean on`.");
             await ctx.Reply(embed: eb.Build());
             return;
         }
@@ -266,7 +266,7 @@ public class ServerConfig
 
         if (newValue.Value)
             await ctx.Reply(
-                $"{Emojis.Success} Log cleanup has been **enabled** for this server. Messages deleted by PluralKit will now be cleaned up from logging channels managed by the following bots:\n- **{botList}**\n\n{Emojis.Note} Make sure PluralKit has the **Manage Messages** permission in the channels in question.\n{Emojis.Note} Also, make sure to blacklist the logging channel itself from the bots in question to prevent conflicts.");
+                $"{Emojis.Success} Log cleanup has been **enabled** for this server. Messages deleted by SystemPride will now be cleaned up from logging channels managed by the following bots:\n- **{botList}**\n\n{Emojis.Note} Make sure SystemPride has the **Manage Messages** permission in the channels in question.\n{Emojis.Note} Also, make sure to blacklist the logging channel itself from the bots in question to prevent conflicts.");
         else
             await ctx.Reply($"{Emojis.Success} Log cleanup has been **disabled** for this server.");
     }

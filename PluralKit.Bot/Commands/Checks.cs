@@ -231,7 +231,7 @@ public class Checks
             throw new PKError("Unable to get the channel associated with this message.");
 
         if (channel.GuildId == null)
-            throw new PKError("PluralKit is not able to proxy messages in DMs.");
+            throw new PKError("SystemPride is not able to proxy messages in DMs.");
 
         // using channel.GuildId here since _rest.GetMessage() doesn't return the GuildId
         var context = await ctx.Repository.GetMessageContext(msg.Author.Id, channel.GuildId.Value, msg.ChannelId);

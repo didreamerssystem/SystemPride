@@ -1,9 +1,9 @@
-# PluralKit
-PluralKit is a Discord bot meant for plural communities. It has features like message proxying through webhooks, switch tracking, system and member profiles, and more.
+# SystemPride
+SystemPride is a Discord bot meant for plural communities. It has features like message proxying through webhooks, switch tracking, system and member profiles, and more.
 
-**Do you just want to add PluralKit to your server? If so, you don't need any of this. Use the bot's invite link: https://discord.com/oauth2/authorize?client_id=466378653216014359&scope=bot%20applications.commands&permissions=536995904**
+**Do you just want to add SystemPride to your server? If so, you don't need any of this. Use the bot's invite link: https://discord.com/oauth2/authorize?client_id=466378653216014359&scope=bot%20applications.commands&permissions=536995904**
 
-PluralKit has a Discord server for support, feedback, and discussion: https://discord.gg/PczBt78 
+SystemPride has a Discord server for support, feedback, and discussion: https://discord.gg/PczBt78 
 
 # Requirements
 Running the bot requires [.NET 5](https://dotnet.microsoft.com/download) and a PostgreSQL database. It should function on any system where the prerequisites are set up (including Windows).
@@ -18,8 +18,8 @@ The configuration file is in JSON format (albeit with a `.conf` extension). The 
 * **`PluralKit.Bot.Token`**: the Discord bot token to connect with
 * **`PluralKit.Database`**: the URI of the database to connect to (in [ADO.NET Npgsql format](https://www.connectionstrings.com/npgsql/))
 * **`PluralKit.RedisAddr`**: the `host:port` of a Redis database to connect to
-* `PluralKit.Bot.Prefixes`: an array of command prefixes to use (default `["pk;", "pk!"]`).
-* **`PluralKit.Bot.ClientId`**: the ID of the bot's user account, used for calculating the bot's own permissions and for the link in `pk;invite`.
+* `PluralKit.Bot.Prefixes`: an array of command prefixes to use (default `["sp;", "sp!"]`).
+* **`PluralKit.Bot.ClientId`**: the ID of the bot's user account, used for calculating the bot's own permissions and for the link in `sp;invite`.
 * `PluralKit.SentryUrl` *(optional)*: the [Sentry](https://sentry.io/welcome/) client key/DSN to report runtime errors to. If absent, disables Sentry integration.
 * `PluralKit.InfluxUrl` *(optional)*: the URL to an [InfluxDB](https://www.influxdata.com/products/influxdb-overview/) server to report aggregate statistics to. An example of these stats can be seen on [the public stats page](https://stats.pluralkit.me). 
 * `PluralKit.InfluxDb` *(optional)*: the name of an InfluxDB database to report statistics to. If either this field or `PluralKit.InfluxUrl` are absent, InfluxDB reporting will be disabled.
@@ -32,7 +32,7 @@ The bot can also take configuration from environment variables, which will overr
 ## Docker
 The easiest way to get the bot running is with Docker. The repository contains a `docker-compose.yml` file ready to use.
 
-* Clone this repository: `git clone https://github.com/PluralKit/PluralKit`
+* Clone this repository: `git clone https://github.com/sakurascoding/SystemPride`
 * Create a `pluralkit.conf` file in the same directory as `docker-compose.yml` containing at least `PluralKit.Bot.Token` and `PluralKit.Bot.ClientId` fields
   * (`PluralKit.Database` is overridden in `docker-compose.yml` to point to the Postgres container)
 * Build the bot: `docker-compose build`
@@ -40,8 +40,8 @@ The easiest way to get the bot running is with Docker. The repository contains a
 
 In other words:
 ```
-$ git clone https://github.com/PluralKit/PluralKit
-$ cd PluralKit
+$ git clone https://github.com/sakurascoding/SystemPride
+$ cd SystemPride
 $ cp pluralkit.conf.example pluralkit.conf
 $ nano pluralkit.conf  # (or vim, or whatever)
 $ docker-compose up -d
@@ -49,7 +49,7 @@ $ docker-compose up -d
 
 ## Manually
 * Install the .NET 6 SDK (see https://dotnet.microsoft.com/download)
-* Clone this repository: `git clone https://github.com/PluralKit/PluralKit`
+* Clone this repository: `git clone https://github.com/sakurascoding/SystemPride`
 * Create and fill in a `pluralkit.conf` file in the same directory as `docker-compose.yml`
 * Run the bot: `dotnet run --project PluralKit.Bot`
   * Alternatively, `dotnet build -c Release -o build/`, then `dotnet build/PluralKit.Bot.dll`
@@ -58,7 +58,7 @@ $ docker-compose up -d
 
 ## Scheduled Tasks worker
 
-There is a scheduled tasks worker that needs to be ran separately from the bot. This handles cleaning up the database, and updating statistics (system/member/etc counts, shown in the `pk;stats` embed).
+There is a scheduled tasks worker that needs to be ran separately from the bot. This handles cleaning up the database, and updating statistics (system/member/etc counts, shown in the `sp;stats` embed).
 
 Note: This worker is *not required*, and the bot will function correctly without it.
 

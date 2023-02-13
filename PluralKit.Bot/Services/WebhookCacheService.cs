@@ -13,7 +13,7 @@ namespace PluralKit.Bot;
 
 public class WebhookCacheService
 {
-    public static readonly string WebhookName = "PluralKit Proxy Webhook";
+    public static readonly string WebhookName = "SystemPride Proxy Webhook";
     private readonly IDiscordCache _cache;
     private readonly ILogger _logger;
     private readonly IMetrics _metrics;
@@ -96,7 +96,7 @@ public class WebhookCacheService
         // but first, make sure we haven't hit the webhook cap yet...
         if (webhooks.Length >= 10)
             throw new PKError(
-                "This channel has the maximum amount of possible webhooks (10) already created. A server admin must delete one or more webhooks so PluralKit can create one for proxying.");
+                "This channel has the maximum amount of possible webhooks (10) already created. A server admin must delete one or more webhooks so SystemPride can create one for proxying.");
 
         return await DoCreateWebhook(channelId);
     }

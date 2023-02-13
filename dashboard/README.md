@@ -1,4 +1,4 @@
-# PluralKit Dashboard
+# SystemPride Dashboard
 
 This project is built using [Vite](https://vitejs.dev/), using the svelte-ts template.
 

@@ -18,7 +18,7 @@ module.exports = {
   },
 
   themeConfig: {
-    repo: 'PluralKit/PluralKit',
+    repo: 'sakurascoding/SystemPride',
     docsDir: 'docs/content/',
     docsBranch: 'main',
     editLinks: true,

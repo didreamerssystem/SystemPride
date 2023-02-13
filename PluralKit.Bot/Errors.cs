@@ -37,10 +37,10 @@ public static class Errors
     public static PKError NotOwnInfo => new("You cannot look up private information of another system.");
 
     public static PKError NoSystemError =>
-        new("You do not have a system registered with PluralKit. To create one, type `pk;system new`.");
+        new("You do not have a system registered with SystemPride. To create one, type `sp;system new`.");
 
     public static PKError ExistingSystemError => new(
-        "You already have a system registered with PluralKit. To view it, type `pk;system`. If you'd like to delete your system and start anew, type `pk;system delete`, or if you'd like to unlink this account from it, type `pk;unlink`.");
+        "You already have a system registered with SystemPride. To view it, type `sp;system`. If you'd like to delete your system and start anew, type `sp;system delete`, or if you'd like to unlink this account from it, type `sp;unlink`.");
 
     public static PKError MissingMemberError =>
         new PKSyntaxError("You need to specify a member to run this command on.");
@@ -62,7 +62,7 @@ public static class Errors
     public static PKError AccountNotLinked => new("That account isn't linked to your system.");
 
     public static PKError UnlinkingLastAccount => new(
-        "Since this is the only account linked to this system, you cannot unlink it (as that would leave your system account-less). If you would like to delete your system, use `pk;system delete`.");
+        "Since this is the only account linked to this system, you cannot unlink it (as that would leave your system account-less). If you would like to delete your system, use `sp;system delete`.");
 
     public static PKError MemberLinkCancelled => new("Member link cancelled.");
     public static PKError MemberUnlinkCancelled => new("Member unlink cancelled.");
@@ -82,7 +82,7 @@ public static class Errors
 
     public static PKError InvalidImportFile =>
         new(
-            "Imported data file invalid. Make sure this is a .json file directly exported from PluralKit or Tupperbox.");
+            "Imported data file invalid. Make sure this is a .json file directly exported from SystemPride or Tupperbox.");
 
     public static PKError ImportCancelled => new("Import cancelled.");
 
@@ -121,7 +121,7 @@ public static class Errors
         new($"The given URL is too long ({url.Length}/{Limits.MaxUriLength} characters).");
 
     public static PKError AccountInOtherSystem(PKSystem system) =>
-        new($"The mentioned account is already linked to another system (see `pk;system {system.Hid}`).");
+        new($"The mentioned account is already linked to another system (see `sp;system {system.Hid}`).");
 
     public static PKError SameSwitch(ICollection<PKMember> members, LookupContext ctx)
     {
@@ -147,7 +147,7 @@ public static class Errors
         $"The time zone query '{zoneStr}' resulted in **{count}** different time zone regions. Try being more specific - e.g. pass an exact time zone specifier from the following website: <https://xske.github.io/tz>");
 
     public static PKError MessageNotFound(ulong id) =>
-        new($"Message with ID '{id}' not found. Are you sure it's a message proxied by PluralKit?");
+        new($"Message with ID '{id}' not found. Are you sure it's a message proxied by SystemPride?");
 
     public static PKError DurationParseError(string durationStr) => new(
         $"Could not parse {durationStr.AsCode()} as a valid duration. Try a format such as `30d`, `1d3h` or `20m30s`.");
@@ -171,15 +171,15 @@ public static class Errors
         $"That member does not have the proxy tag {tagToRemove.ProxyString.AsCode()}. The member currently has these tags: {member.ProxyTagsString()}");
 
     public static PKError LegacyAlreadyHasProxyTag(ProxyTag requested, PKMember member, Context ctx) => new(
-        $"This member already has more than one proxy tag set: {member.ProxyTagsString()}\nConsider using the {$"pk;member {member.Reference(ctx)} proxy add {requested.ProxyString}".AsCode()} command instead.");
+        $"This member already has more than one proxy tag set: {member.ProxyTagsString()}\nConsider using the {$"sp;member {member.Reference(ctx)} proxy add {requested.ProxyString}".AsCode()} command instead.");
 
     public static PKError EmptyProxyTags(PKMember member, Context ctx) => new(
-        $"The example proxy `text` is equivalent to having no proxy tags at all, since there are no symbols or brackets on either end. If you'd like to clear your proxy tags, use `pk;member {member.Reference(ctx)} proxy clear`.");
+        $"The example proxy `text` is equivalent to having no proxy tags at all, since there are no symbols or brackets on either end. If you'd like to clear your proxy tags, use `sp;member {member.Reference(ctx)} proxy clear`.");
 
     public static PKError GenericCancelled() => new("Operation cancelled.");
 
     public static PKError AttachmentTooLarge(int mb) => new(
-        $"PluralKit cannot proxy attachments over {mb} megabytes in this server (as webhooks aren't considered as having Discord Nitro) :(");
+        $"SystemPride cannot proxy attachments over {mb} megabytes in this server (as webhooks aren't considered as having Discord Nitro) :(");
 
     public static PKError ChannelNotFound(string channelString) =>
         new($"Channel \"{channelString}\" not found or is not in this server.");
